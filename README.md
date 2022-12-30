@@ -20,7 +20,7 @@ $ gcc -o trig trig.c -lm
 
 Example: 
 ```sh
-$ ./trig -r 1 -d 3 -y 20 -x 3
+$ ./trig -r 1 -d 3 -y 20 -x 3 -f cos
 ```
 
 ### Options
@@ -29,12 +29,12 @@ $ ./trig -r 1 -d 3 -y 20 -x 3
 - `-d` &nbsp; Graph domain in &pi; ( 0 < x < *d*&pi; ) *Decimal or integer*<br />
 - `-y` &nbsp; Graph y-unit size in characters *Integer*<br />
 - `-x` &nbsp; Graph x-unit size in characters *Integer* <br />
-
+- `-f` &nbsp; Function (sin, cos or tan) *String* <br />
 
 
 ## Todo
 
-- Add additional functions (cos, tan) an option
+- Make plots outside of range not appear
 - Invert axes
 - Make wavelength, period and translations options
 - Fix rounding bug (always rounds `*` position up)
