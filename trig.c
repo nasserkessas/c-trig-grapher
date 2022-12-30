@@ -111,15 +111,17 @@ int main(int argc, char **argv) {
             case 2: v = tan(x); break;
         }
 
-        axis_drawn = 0;
-        point_drawn = 0;
+    axis_drawn = 0;
+    point_drawn = 0;
     for (y = -RANGE; y <= ((double) RANGE + stepy); y += stepy) {
-            if (y >= 0 && axis_drawn == 0) {
-                putchar('|');
-                axis_drawn = 1;
-            } else if (y >= v && point_drawn == 0) {
+            if (y >= v && point_drawn == 0) {
                 putchar('*');
                 point_drawn = 1;
+                if (y >= 0) axis_drawn = 1;
+            }
+            else if (y >= 0 && axis_drawn == 0) {
+                putchar('|');
+                axis_drawn = 1;
             } else {
                 putchar(' ');
             }
