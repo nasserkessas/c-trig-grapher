@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     double RANGE = 1;
     double DOMAIN = 3;
     int XUNITSIZE = 5;
-    int YUNITSIZE = 20;
+    int YUNITSIZE = 5;
     int FUNCTION = 0;
 
     if (argc == 1) {
@@ -97,13 +97,17 @@ int main(int argc, char **argv) {
     stepx = (double) 1 / XUNITSIZE;
     stepy = (double) RANGE / YUNITSIZE;
 
+    int points[(int) (DOMAIN*PI/stepx) + 1][(int) (2*RANGE/stepy) + 2];
+
+    int x_index = 0;
+    int y_index = 0;
     for (x = 0; x <= DOMAIN*PI; x += stepx) {
-        if (x == 0) {
-            for (double i = 0; i <= RANGE * 2; i += stepy) {
-                putchar('_');
-            }
-            putchar('\n');
-        }
+        // if (x == 0) {
+        //     for (double i = 0; i <= RANGE * 2; i += stepy) {
+        //         putchar('_');
+        //     }
+        //     putchar('\n');
+        // }
         switch (FUNCTION) {
             case 0: v = sin(x); break;
             case 1: v = cos(x); break;
@@ -112,20 +116,52 @@ int main(int argc, char **argv) {
 
         axis_drawn = 0;
         point_drawn = 0;
+        y_index = 0;
         for (y = -RANGE; y <= ((double) RANGE + stepy); y += stepy) {
-                if (y >= v && point_drawn == 0) {
-                    putchar('*');
-                    point_drawn = 1;
-                    if (y >= 0) axis_drawn = 1;
-                }
-                else if (y >= 0 && axis_drawn == 0) {
-                    putchar('|');
-                    axis_drawn = 1;
-                } else {
-                    putchar(' ');
-                }
+            if (y >= v && point_drawn == 0) {
+                points[x_index][y_index] = 1;
+                point_drawn = 1;
+                if (y >= 0) { axis_drawn = 1; }
             }
-            putchar('\n');
+            else if (y >= 0 && axis_drawn == 0) {
+                points[x_index][y_index] = 2;
+                axis_drawn = 1;
+            } else {
+                points[x_index][y_index] = 0;
+            }
+            y_index++;
         }
+        // putchar('\n');
+        x_index++;
+    }
+
+    // for (y = -RANGE; y <= RANGE; y += stepy) {
+    //     if (abs(x - y) < 1e-10) { // y == 0 with error margin of 1e-10
+    //         for (double i = 0; i <= DOMAIN * 2; i += stepx) {
+    //             putchar('-');
+    //         }
+    //     }
+    //     putchar('\n');
+    //     // printf("%f\n", y);
+    // }
+
+    for (int i = y_index; i > 0; i--) {
+        putchar('|');
+        for (int j = 0; j < x_index; j++) {
+            switch ((int) points[j][i]) {
+            case 0:
+                putchar(' ');
+                break;
+            case 1:
+                putchar('x');
+                break;
+            case 2:
+                putchar('-');
+                break;
+            }
+        }
+        putchar('\n');
+    }
+
     return 0;
 }
