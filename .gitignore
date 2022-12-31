@@ -2,3 +2,6 @@
 *
 !*.*
 !*/
+
+# Ignore VS code config files
+.vscode
