@@ -23,8 +23,8 @@ int main(int argc, char **argv) {
 
     double RANGE = 1;
     double DOMAIN = 3;
-    int XUNITSIZE = 5;
-    int YUNITSIZE = 5;
+    int XUNITSIZE = 6;
+    int YUNITSIZE = 6;
     int FUNCTION = 0;
 
     if (argc == 1) {
