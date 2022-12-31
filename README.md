@@ -36,7 +36,7 @@ $ ./trig -r 1 -d 3 -y 20 -x 3 -f cos
 
 - Make plots outside of range not appear
 - Make wavelength, period and translations options
-- Fix rounding bug (always rounds `x` position up)
+- Fix rounding bugs
 
 ## Acknoledgements
 
